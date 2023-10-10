@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:database/screen/controller/qoutes_controller.dart';
 import 'package:database/utils/app_size/app_size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../utils/app_colors/app_colors.dart';
 import '../../utils/text_styles/text_styles.dart';
@@ -70,14 +71,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: TextStyles.textStyles.primaryDecoration,
-                          alignment: Alignment.center,
-                          height: 50 * h,
-                          width: w * 40,
-                          child: Text(
-                              "${QuotesController.controller.QoutesList[index]}",
-                              style: TextStyles.textStyles.subTitle),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed("view");
+                          },
+                          child: Container(
+                            decoration: TextStyles.textStyles.primaryDecoration,
+                            alignment: Alignment.center,
+                            height: 50 * h,
+                            width: w * 40,
+                            child: Text(
+                                "${QuotesController.controller.QoutesList[index]}",
+                                style: TextStyles.textStyles.subTitle),
+                          ),
                         ),
                       );
                     },
