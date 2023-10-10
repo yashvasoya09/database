@@ -11,6 +11,7 @@ class TextStyles
   static final textStyles = TextStyles._();
   TextStyles._();
   TextStyle title = GoogleFonts.play(color: AppColors.appColor.secondaryColor,fontSize: w*6.5,);
+  TextStyle viewTitle = GoogleFonts.play(color: AppColors.appColor.secondaryColor,fontSize: w*6.5,);
   TextStyle appBarTitle = GoogleFonts.play(color: AppColors.appColor.secondaryColor,fontSize: w*6.5,fontWeight: FontWeight.w100);
   TextStyle subTitle = GoogleFonts.play(color: AppColors.appColor.primaryColor,fontSize: w*4.6);
   TextStyle paragraph = GoogleFonts.play(color: Colors.black,fontSize: w*2.9);

@@ -1,6 +1,8 @@
 import 'package:database/utils/app_size/app_size.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/text_styles/text_styles.dart';
+
 class ViewQuotesScreen extends StatefulWidget {
   const ViewQuotesScreen({super.key});
 
@@ -13,12 +15,23 @@ class _ViewQuotesScreenState extends State<ViewQuotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-        body: Container(
-          height: 100*h,
-          width: 100*w,
-          child: Image.asset(
-      "assets/images/bg1.png",
-      fit: BoxFit.cover),
-        ));
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 100 * h,
+            width: 100 * w,
+            child: Image.asset(
+              "assets/images/bg1.png",
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text(
+            "hello world hello world",
+            style: TextStyles.textStyles.viewTitle,
+          ),
+        ],
+      ),
+    );
   }
 }
