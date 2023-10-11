@@ -1,3 +1,4 @@
+import 'package:database/screen/view/add_screen.dart';
 import 'package:database/screen/view/home_screen.dart';
 import 'package:database/screen/view/viewquotes_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ void main() {
       debugShowCheckedModeBanner: false,
       routes: {
         '/':(context) => HomeScreen(),
-        'view':(context) => ViewQuotesScreen(),
+        '/view':(context) => ViewQuotesScreen(),
+        '/add':(context) => AddScreen(),
       },
     ),
   );

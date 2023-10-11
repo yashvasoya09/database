@@ -1,6 +1,8 @@
 import 'package:database/utils/app_colors/app_colors.dart';
 import 'package:database/utils/app_size/app_size.dart';
+import 'package:database/utils/db%20helper/db_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../app_colors/app_colors.dart';
@@ -17,4 +19,5 @@ class TextStyles
   TextStyle paragraph = GoogleFonts.play(color: Colors.black,fontSize: w*2.9);
   
   Decoration primaryDecoration = BoxDecoration(color: AppColors.appColor.thiredColor,borderRadius: BorderRadius.circular(1.8*h));
+
 }

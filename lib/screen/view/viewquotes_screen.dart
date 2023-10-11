@@ -27,7 +27,7 @@ class _ViewQuotesScreenState extends State<ViewQuotesScreen> {
             ),
           ),
           Text(
-            "hello world hello world",
+            "your quotes",
             style: TextStyles.textStyles.viewTitle,
           ),
         ],

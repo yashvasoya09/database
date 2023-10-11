@@ -28,44 +28,44 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
       body: Padding(
         padding: EdgeInsets.all(h * 2.5),
-        child: Column(
-          children: [
-            SizedBox(
-              height: h * 1,
-            ),
-            Container(
-              height: h * 20,
-              width: w * 100,
-              child: Container(
-                child: CarouselSlider(
-                    items: [
-                      Image.asset("assets/images/i1.png"),
-                      Image.asset("assets/images/i2.png"),
-                      Image.asset("assets/images/i3.png"),
-                    ],
-                    options: CarouselOptions(
-                      aspectRatio: 16 / 9,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enlargeCenterPage: true,
-                      enlargeFactor: 0.3,
-                      scrollDirection: Axis.horizontal,
-                    )),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: h * 1,
               ),
-            ),
-            Row(
-              children: [
-                Text("Your Quotes", style: TextStyles.textStyles.title),
-              ],
-            ),
-            Container(
-              height: 20 * h,
-              child: Expanded(
+              Container(
+                height: h * 20,
+                width: w * 100,
+                child: Container(
+                  child: CarouselSlider(
+                      items: [
+                        Image.asset("assets/images/i1.png"),
+                        Image.asset("assets/images/i2.png"),
+                        Image.asset("assets/images/i3.png"),
+                      ],
+                      options: CarouselOptions(
+                        aspectRatio: 16 / 9,
+                        initialPage: 0,
+                        enableInfiniteScroll: true,
+                        reverse: false,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enlargeCenterPage: true,
+                        enlargeFactor: 0.3,
+                        scrollDirection: Axis.horizontal,
+                      )),
+                ),
+              ),
+              Row(
+                children: [
+                  Text("Your Quotes", style: TextStyles.textStyles.title),
+                ],
+              ),
+              Container(
+                height: 20 * h,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {
-                            Get.toNamed("view");
+                            Get.toNamed("/view");
                           },
                           child: Container(
                             decoration: TextStyles.textStyles.primaryDecoration,
@@ -89,15 +89,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     itemCount: QuotesController.controller.QoutesList.length),
               ),
-            ),
-            Row(
-              children: [
-                Text("Our Quotes", style: TextStyles.textStyles.title),
-              ],
-            ),
-            Container(
-              height: 20 * h,
-              child: Expanded(
+              Row(
+                children: [
+                  Text("Our Quotes", style: TextStyles.textStyles.title),
+                ],
+              ),
+              Container(
+                height: 20 * h,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -116,13 +114,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     itemCount: QuotesController.controller.QoutesList.length),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.appColor.primaryColor,
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed("/add");
+          },
           child: Icon(Icons.add)),
     ));
   }
