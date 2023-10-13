@@ -1,3 +1,4 @@
+import 'package:database/screen/view/add_category.dart';
 import 'package:database/screen/view/add_screen.dart';
 import 'package:database/screen/view/home_screen.dart';
 import 'package:database/screen/view/viewquotes_screen.dart';
@@ -9,9 +10,10 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/':(context) => HomeScreen(),
-        '/view':(context) => ViewQuotesScreen(),
-        '/add':(context) => AddScreen(),
+        '/':(context) => const HomeScreen(),
+        '/view':(context) => const ViewQuotesScreen(),
+        '/add':(context) => const AddScreen(),
+        '/addcate':(context) => const AddCategory(),
       },
     ),
   );
