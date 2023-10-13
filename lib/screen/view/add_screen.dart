@@ -92,7 +92,7 @@ class _AddScreenState extends State<AddScreen> {
               ElevatedButton(onPressed: (){
                      var quote = txtquote.text;
                      var category = controller.selectedItem;
-                     DbHelper.dbHelper.insertDB(quote: quote, category: category);
+                     DbHelper.dbHelper.insertDB(quote: quote, category: "category");
                      controller.getData();
                      Get.back();
               }, child: Text("SUBMIT",style: TextStyles.textStyles.title,))
