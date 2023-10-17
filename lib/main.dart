@@ -1,6 +1,7 @@
 import 'package:database/screen/view/add_category.dart';
 import 'package:database/screen/view/add_screen.dart';
 import 'package:database/screen/view/home_screen.dart';
+import 'package:database/screen/view/update_screen.dart';
 import 'package:database/screen/view/viewquotes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ void main() {
         '/view':(context) => const ViewQuotesScreen(),
         '/add':(context) => const AddScreen(),
         '/addcate':(context) => const AddCategory(),
+        '/update':(context) => const UpdateScreen(),
       },
     ),
   );

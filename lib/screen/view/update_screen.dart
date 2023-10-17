@@ -4,18 +4,19 @@ import 'package:database/utils/app_size/app_size.dart';
 import 'package:database/utils/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/db helper/db_helper.dart';
+import '../model/quotes_model.dart';
 
-class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
+class UpdateScreen extends StatefulWidget {
+  const UpdateScreen({super.key});
 
   @override
-  State<AddScreen> createState() => _AddScreenState();
+  State<UpdateScreen> createState() => _UpdateScreenState();
 }
 
-class _AddScreenState extends State<AddScreen> {
+class _UpdateScreenState extends State<UpdateScreen> {
   TextEditingController txtquote = TextEditingController();
   QuotesController controller = Get.put(QuotesController());
+  int index = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _AddScreenState extends State<AddScreen> {
         appBar: AppBar(
             backgroundColor: AppColors.appColor.primaryColor,
             title:
-                Text('Add Qoutes', style: TextStyles.textStyles.appBarTitle)),
+            Text('Update Quotes', style: TextStyles.textStyles.appBarTitle)),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -36,11 +37,11 @@ class _AddScreenState extends State<AddScreen> {
               TextField(
                 controller: txtquote,
                 decoration: InputDecoration(
-                    hintText: 'Enter Our Qoutes',
+                    hintText: 'Enter Our Quotes',
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide:
-                            BorderSide(color: AppColors.appColor.primaryColor)),
+                        BorderSide(color: AppColors.appColor.primaryColor)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(
@@ -50,13 +51,13 @@ class _AddScreenState extends State<AddScreen> {
                 height: h * 2,
               ),
               Obx(
-                () =>  DropdownButton(
+                    () =>  DropdownButton(
                   value: controller.selectedItem.value,
-                  items: controller.categoryData.value
+                  items: controller.categoryData
                       .map((e) => DropdownMenuItem(child: Text("${e['category']}"),value: e['category'],))
                       .toList(),
                   onChanged: (value) {
-                      controller.selectedItem.value=value as String;
+                    controller.selectedItem.value=value as String;
                   },
                 ),
               ),
@@ -66,33 +67,14 @@ class _AddScreenState extends State<AddScreen> {
               SizedBox(
                 height: 3 * h,
               ),
-              // AnimatedButton(
-              //   backgroundColor: AppColors.appColor.secondaryColor,
-              //   height: h * 6.5,
-              //   width: w * 35,
-              //   text: 'SUBMIT',
-              //   isReverse: true,
-              //   selectedTextColor: AppColors.appColor.fourColor,
-              //   transitionType: TransitionType.BOTTOM_TO_TOP,
-              //   textStyle: GoogleFonts.nunito(
-              //       fontSize: w * 5,
-              //       letterSpacing: 5,
-              //       color: AppColors.appColor.primaryColor,
-              //       fontWeight: FontWeight.w300),
-              //   onPress: () {
-              //     var quote = txtquote.text;
-              //     var category = controller.selectedItem;
-              //     DbHelper.dbHelper.insertDB(quote: quote, category: category);
-              //     Get.back();
-              //   },
-              // ),
               ElevatedButton(onPressed: (){
-                     var quote = txtquote.text;
-                     var category = controller.selectedItem.value;
-                     print(category);
-                     DbHelper.dbHelper.insertDB(quote,category);
-                     controller.getData();
-                     Get.back();
+                var id = controller.sortData[index]['id'];
+                var quote = txtquote.text;
+                var category = controller.selectedItem.value;
+                QuotesModel model = QuotesModel(quote, category);
+                controller.updateData(model, id);
+                controller.getSortData(category);
+                Get.back();
               }, child: Text("SUBMIT",style: TextStyles.textStyles.title,))
             ],
           ),

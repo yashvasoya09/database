@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:database/screen/model/quotes_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -39,28 +40,54 @@ class DbHelper {
     );
   }
 
-  Future<void> insertDB({required quote,required category}) async {
+  Future<void> insertDB(quote, category) async {
     database = await checkDB();
-    database!.insert(tableName, {'quote': quote,'category':category});
+    database!.insert(tableName, {'quote': quote, 'category': category});
   }
 
   Future<List<Map>> readDB() async {
     database = await checkDB();
     String query = "SELECT * FROM $tableName";
     List<Map> dataList = await database!.rawQuery(query);
-    print("${dataList[0]}");
     return dataList;
   }
 
-// category
+// category **************************************
   Future<void> insertCategory(category) async {
     database = await checkDB();
     database!.insert(categoryTable, {'category': category});
   }
+
   Future<List<Map>> readCategory() async {
     database = await checkDB();
     String query = "SELECT * FROM $categoryTable";
     List<Map> dataList = await database!.rawQuery(query);
     return dataList;
+  }
+
+  //sort data ************************************
+  Future<List<Map>> getCategoryDataSort(category) async {
+    database = await checkDB();
+    String query = "SELECT * FROM $tableName WHERE category = '$category'";
+    List<Map> dataList = await database!.rawQuery(query);
+    return dataList;
+  }
+
+  Future<void> deleteData(int id) async {
+    database = await checkDB();
+    database!.delete(tableName, where: "id=?", whereArgs: [id]);
+  }
+
+  Future<int> update({required QuotesModel model, required id}) async {
+    database = await checkDB();
+    print("update mathod called*****************************");
+    return database!.update(
+        tableName,
+        {
+          'quote': model.quotes,
+          'category': model.category,
+        },
+        where: "id=?",
+        whereArgs: [id]);
   }
 }
